@@ -1,5 +1,12 @@
 services:
-  gravity_tag.field.reference.display.taxonomy_list:
-    class: Gravity\TagBundle\Field\Type\Reference\Display\TaxonomyListDisplay
-    tags:
-      - { name: gravity_cms.field.display }
+    gravity_tag.field.reference.display.taxonomy_list:
+        class: Gravity\TagBundle\Field\Type\Reference\Display\TaxonomyListDisplay
+        tags:
+            - { name: gravity_cms.field.display }
+
+    gravity_tag.display.handler.node_list:
+        class: Gravity\TagBundle\Display\Handler\NodeListHandler
+        arguments:
+            - "@doctrine.orm.default_entity_manager"
+        tags:
+            - { name: "gravity_cms.display.handler" }

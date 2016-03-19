@@ -2,6 +2,10 @@
 
 {% block field %}
     {% spaceless %}
-        {{ tag.name }}
+        {% if tag.route %}
+            <a href="{{ url(tag.route.name) }}">{{ tag.name }}</a>
+        {% else %}
+            {{ tag.name }}
+        {% endif %}
     {% endspaceless %}
 {% endblock field %}
