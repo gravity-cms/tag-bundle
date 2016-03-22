@@ -52,7 +52,7 @@ class TagListHandler extends ListHandler
         $listHandler->setField($request->attributes->get('_field'));
         $listHandler->setTag($request->attributes->get('tag'));
 
-        if(!$request->attributes->has('_template')){
+        if(!$request->attributes->has('_list_template')){
             $listHandler->setTemplate('GravityTagBundle:Node:list-by-tag.html.twig');
         }
 

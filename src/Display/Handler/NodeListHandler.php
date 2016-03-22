@@ -64,9 +64,12 @@ class NodeListHandler implements DisplayHandlerInterface
     {
         $optionsResolver->setRequired('node_types');
         $optionsResolver->setAllowedTypes('node_types', 'array');
-        $optionsResolver->setDefaults([
-            'page_size' => 20,
-        ]);
+        $optionsResolver->setDefaults(
+            [
+                'page_size' => 20,
+                'template'  => 'GravityTagBundle:Node:list-by-tag.html.twig',
+            ]
+        );
     }
 
     /**
@@ -80,19 +83,19 @@ class NodeListHandler implements DisplayHandlerInterface
     /**
      * @inheritDoc
      */
-    public function getTemplate()
+    public function getTemplate(array $options = [])
     {
-        return 'GravityTagBundle:Node:list-by-tag.html.twig';
+        return $options['template'];
     }
 
     /**
-     * @param Tag $entity
+     * @param FieldableEntity|Tag $entity
      * @param array $options
      * @return array
      */
     public function getTemplateOptions(FieldableEntity $entity, array $options = [])
     {
-        foreach($options['node_types'] as $nodeClass => $nodeField){
+        foreach ($options['node_types'] as $nodeClass => $nodeField) {
             $listHandler = new TagListHandler($nodeClass);
             $listHandler->setField($nodeField);
             $listHandler->setTag($entity->getName());
